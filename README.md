@@ -19,7 +19,7 @@ Program will be developed in Linux environment, so for best results, please run 
 
 **Group Members**
 
-Adam Mraz
+Adam Mraz  
 Edward Wassman
 
 **Contributors**
