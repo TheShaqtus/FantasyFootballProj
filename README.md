@@ -3,7 +3,14 @@ CSCI 2270 Final Project
 
 **Summary**
 
-This project will use an extensive list of Fantasy Football data online in CSV format.  It will read the data from the file into either a Binary Search Tree, Red Black Tree, or Hash Table (not quite sure which we want to work with yet).  The program will allow for a number of functions to analyze the data, such as pull the top entered number of results or bottom entered number of results by certain criterias.  It will also allow for the data to be sorted in ascending/descending order depending on user preference.
+This project will use an extensive list of Fantasy Football data online in CSV format.  it will read the data from the file into a database controlled by a doubly linked list.  The program will allow for a number of functions to analyze the data, much like SQL query functions.  The functions included in the program are:
+* Build - this function will read the data file and build multiple doubly linked list, one for each position (QB, RB, WR, TE) and 1 for all players.  The CSV file is sorted by Fantasy Points in descending order.
+* Sort - this function will allow the user to select a data type to sort by (Name, Team, Games Played, Position, Points, Points/Game) and select an order to sort by (Ascending/Descending).
+* Search - This function will allow the user to search a data type for a result and will print out that result.
+* Compare Players- Will allow the user to compare multiple players stats.
+* Compare Teams - Will pull all players of each team in the database and compare them.
+* Print - Will display the information in the database in it's currently sorted state.
+* Select - Will allow the user to input 2 indexes of the database and will display the data for the entries in those indexes.
 
 **How To Run**
 
@@ -11,7 +18,7 @@ What do?
 
 **Dependencies**
 
-No dependencies besides provided data is necessary.
+No dependencies besides provided data are necessary.
 
 **System Requirements**
 
