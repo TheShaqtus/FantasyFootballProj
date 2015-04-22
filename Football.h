@@ -8,9 +8,8 @@ struct node{
 	std::string position;
 	int points;
 	float avgPoints;
-	node* parent;
-	node* right;
-	node* left;
+	node* prev;
+	node* next;
 	
 	node(){};
 	
@@ -21,10 +20,8 @@ struct node{
 		position = in_position;
 		points = in_points;
 		avgPoints = points/games;
-		left == NULL;
-		right == NULL;
-		parent = NULL;
-
+		next = NULL;
+		prev = NULL;
 };
 
 class StatTree{
