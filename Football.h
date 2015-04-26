@@ -1,19 +1,20 @@
 #ifndef FOOTBALL_H
 #define FOOTBALL_H
 
-struct node{
+
+struct player{
 	int games;
 	std::string name;
 	std::string team;
 	std::string position;
 	int points;
 	float avgPoints;
-	node* prev;
-	node* next;
-	
-	node(){};
-	
-	node(std::string in_name, std::string in_team, int in_games, std::string in_position, int in_points){
+	player* prev;
+	player* next;
+
+	player(){};
+
+	player(std::string in_name, std::string in_team, int in_games, std::string in_position, int in_points){
 		name = in_name;
 		team = in_team;
 		games = in_games;
@@ -22,18 +23,32 @@ struct node{
 		avgPoints = points/games;
 		next = NULL;
 		prev = NULL;
+	}
 };
 
-class StatTree{
-	
+class Database
+{
+
 	public:
-		StatTree();
-		~StatTree();
-		void addPlayer(std::string, std::string, int, std::string, int);
-		void printTree();
-		void printByPosition(std::string);
+		Database();
+		~Database();
+		void buildDatabase(char * fileName);
+		void printDatabase();
 		void comparePlayers(std::string, std::string);
-		
+		void bubbleSort();
+		void mergeSort();
+		void insertionSort();
+		void compareTeams(std::string, std::string);
+		void entrySelect(int, int);
+	protected:
+	private:
+		player* root;
+		int entryCount;
+
+};
+
+
+
 
 
 #endif
