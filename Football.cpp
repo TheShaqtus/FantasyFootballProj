@@ -95,7 +95,8 @@ void Database::compareTeams(string name1, string name2){
 }
 
 void Database::bubbleSort(){
-    int input;
+    int input1;
+    int input2;
     player* curr = NULL;
     player* trail = NULL;
     player* temp = NULL;
@@ -106,28 +107,56 @@ void Database::bubbleSort(){
     cout << "4. Games Played" << endl;
     cout << "5. Points" << endl;
     cout << "6. Average Points" << endl;
-    cin >> input;
+    cin >> input1;
+    cin.clear();
+    cin.ignore(10000, '\n');
+    cout << "==Choose Sort Order==" << endl;
+    cout << "1. Ascending" << endl;
+    cout << "2. Descending" << endl;
+    cin >> input2;
 
-    switch(input){
+    switch(input1){
 
         case 1:
-            for(int i = 0; i < entryCount; i++){
-                curr = trail = root;
-                while(curr->next != NULL){
-                    if(curr->name.compare(curr->next->name) > 0){
-                        temp = curr->next;
-                        curr->next = curr->next->next;
-                        temp->next = curr;
+            if(input2 == 1){
+                for(int i = 0; i < entryCount; i++){
+                    curr = trail = root;
+                    while(curr->next != NULL){
+                        if(curr->name.compare(curr->next->name) > 0){
+                            temp = curr->next;
+                            curr->next = curr->next->next;
+                            temp->next = curr;
 
-                        if(curr == root){
-                            root = trail = temp;
-                        }else{
-                            trail->next = temp;
+                            if(curr == root){
+                                root = trail = temp;
+                            }else{
+                                trail->next = temp;
+                            }
+                            curr = temp;
                         }
-                        curr = temp;
+                        trail = curr;
+                        curr = curr->next;
                     }
-                    trail = curr;
-                    curr = curr->next;
+                }
+            }else if(input2 == 2){
+                for(int i = 0; i < entryCount; i++){
+                    curr = trail = root;
+                    while(curr->next != NULL){
+                        if(curr->name.compare(curr->next->name) < 0){
+                            temp = curr->next;
+                            curr->next = curr->next->next;
+                            temp->next = curr;
+
+                            if(curr == root){
+                                root = trail = temp;
+                            }else{
+                                trail->next = temp;
+                            }
+                            curr = temp;
+                        }
+                        trail = curr;
+                        curr = curr->next;
+                    }
                 }
             }
             break;
@@ -154,6 +183,7 @@ void Database::bubbleSort(){
 }
 
 void Database::mergeSort(){
+
 }
 
 void Database::insertionSort(){
