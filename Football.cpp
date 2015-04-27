@@ -4,12 +4,15 @@
 #include <string>
 #include <stdlib.h> //allows atoi
 #include <vector>
+#include <iomanip>
 
 using namespace std;
 
 player* mergeRun(int input1, int input2, player* curr);
-player* Merge(player* x, player* y);
+player* Merge(player* x, player* y, int input1, int input2);
 player* listSplit(player* head);
+player* insertionRun(player* head, int input1, int input2);
+player* Insert(player* head, player* newEntry, int input1, int input2);
 
 
 Database::Database()
@@ -59,7 +62,7 @@ void Database::buildDatabase(char* fileName){
                 root->games= games;
                 root->points= playerpoints;
                 root->position= position;
-                root->avgPoints= (playerpoints/games);
+                root->avgPoints= (playerpoints/(double)games);
             }
             else{
                 player* n = new player;
@@ -68,7 +71,7 @@ void Database::buildDatabase(char* fileName){
                 n->games= games;
                 n->points= playerpoints;
                 n->position= position;
-                n->avgPoints= (playerpoints/games);
+                n->avgPoints= (playerpoints/(double)games);
                 temp->next = n;
                 temp = temp->next;
             }
@@ -85,7 +88,7 @@ void Database::printDatabase(){
     player* curr = root;
     cout << "Name   Team   Position   Games Played   Points   Points/Game" << endl;
     while(curr != NULL){
-        cout << curr->name << "  " << curr->team << "  " << curr->position << "  " << curr->games << "  " << curr->points << "  " << curr->avgPoints << endl;
+        cout << curr->name << "  " << curr->team << "  " << curr->position << "  " << curr->games << "  " << curr->points << "  " << fixed << setprecision(2) << curr->avgPoints  << endl;
         curr = curr->next;
     }
 }
@@ -245,9 +248,54 @@ void Database::mergeSort(){
 }
 
 void Database::insertionSort(){
+    int input1;
+    int input2;
+    cout << "==Choose Sort Field==" << endl;
+    cout << "1. Player Name" << endl;
+    cout << "2. Team" << endl;
+    cout << "3. Position" << endl;
+    cout << "4. Games Played" << endl;
+    cout << "5. Points" << endl;
+    cout << "6. Average Points" << endl;
+    cin >> input1;
+    cin.clear();
+    cin.ignore(10000, '\n');
+    cout << "==Choose Sort Order==" << endl;
+    cout << "1. Ascending" << endl;
+    cout << "2. Descending" << endl;
+    cin >> input2;
+    root = insertionRun(root, input1, input2);
+    cout << "Sort complete." << endl;
 }
 
 void Database::entrySelect(int index1, int index2){
+    player* head = root;
+    player* tail = NULL;
+    player* curr;
+    int numEntries = index2-index1+1;
+    int pointSum = 0;
+    int gameSum = 0;
+    double avgPoints = 0.0;
+    for(int i = 1; i < index1; i++){
+        head = head->next;
+    }
+    tail = head->next;
+    for(int j = 0; j < index2-index1; j++){
+        tail = tail->next;
+    }
+    curr = head;
+    while(curr->name.compare(tail->name) != 0){
+        cout << curr->name << "  " << curr->team << "  " << curr->position << "  " << curr->games << "  " << curr->points << "  " << fixed << setprecision(2) << curr->avgPoints  << endl;
+        pointSum = pointSum + curr->points;
+        gameSum = gameSum +curr->games;
+        curr = curr->next;
+
+    }
+    avgPoints = pointSum / (double)gameSum;
+    cout << "Average Points: " << fixed << setprecision(2) << pointSum/(double)numEntries << endl;
+    cout << "Average Games Played: " << fixed << setprecision(2) << gameSum / (double)numEntries << endl;
+    cout << "Average Points Per Game: " << fixed << setprecision(2) << avgPoints << endl;
+
 }
 
 player* mergeRun(int input1, int input2, player* head){
@@ -257,17 +305,8 @@ player* mergeRun(int input1, int input2, player* head){
     player* middle = listSplit(head);
     player* secondHalf = middle->next;
     middle->next = NULL;
-    return Merge(mergeRun(input1, input2, head), mergeRun(input1, input2, secondHalf));
-    switch(input1){
+    return Merge(mergeRun(input1, input2, head), mergeRun(input1, input2, secondHalf), input1, input2);
 
-        case 1:
-            //mergeRun(input1, input2, first);
-            //mergeRun(input1, input2, second);
-            //headRef = Merge(first, second);
-            break;
-
-
-    }
 }
 
 player* listSplit(player* head){
@@ -284,7 +323,7 @@ player* listSplit(player* head){
     return slow;
 }
 
-player* Merge(player* x, player* y){
+player* Merge(player* x, player* y, int input1, int input2){
 
     player* temp = new player;
     player* curr = temp;
@@ -304,4 +343,61 @@ player* Merge(player* x, player* y){
         curr->next = x;
     }
     return temp->next;
+}
+
+player* insertionRun(player* head, int input1, int input2){
+    if(head == NULL || head->next == NULL){
+        return head;
+    }
+    player* curr = head->next;
+    player* result = head;
+    result->next = NULL;
+    while(curr != NULL){
+        player* temp = curr;
+        curr = curr->next;
+        result = Insert(result, temp, input1, input2);
+    }
+    return result;
+}
+
+player* Insert(player* head, player* newEntry, int input1, int input2){
+
+    switch(input1){
+        case 1:
+            if(input2 == 1){
+                if(head == NULL || head->name.compare(newEntry->name) > 0){
+                    newEntry->next = head;
+                    head = newEntry;
+                    return head;
+                }
+                player* curr = head;
+                player* prev = NULL;
+                while(curr != NULL && curr->name.compare(newEntry->name) < 0){
+                    prev = curr;
+                    curr = curr->next;
+                }
+                newEntry->next = curr;
+                prev->next = newEntry;
+                return head;
+            }else if(input2 == 2){
+                if(head == NULL || head->name.compare(newEntry->name) < 0){
+                    newEntry->next = head;
+                    head = newEntry;
+                    return head;
+                }
+                player* curr = head;
+                player* prev = NULL;
+                while(curr != NULL && curr->name.compare(newEntry->name) > 0){
+                    prev = curr;
+                    curr = curr->next;
+                }
+                newEntry->next = curr;
+                prev->next = newEntry;
+                return head;
+            }
+
+        case 2:
+            break;
+    }
+    return head;
 }
