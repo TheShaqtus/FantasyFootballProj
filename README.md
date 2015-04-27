@@ -18,7 +18,7 @@ This project will use an extensive list of Fantasy Football data online in CSV f
 * Place all 4 files into the same folder and build the files together.
 * Run ProjectRun.cpp with command line argument "FantasyData.csv".
 * The program menu will appear.  To run most functions, you must first run the "Build Database" function by entering 1.
-* Project Documentation can be found [here](https://github.com/TheShaqtus/FantasyFootballProj/edit/master/README.md).
+* Project Documentation can be found [here](https://github.com/TheShaqtus/FantasyFootballProj/blob/master/Documentation.md).
 
 **Dependencies**
 
@@ -39,5 +39,5 @@ None :(
 
 **Open Issues/Bugs**
 
-No code yet!
+No known issues.
 
