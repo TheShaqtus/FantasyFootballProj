@@ -451,7 +451,7 @@ void Database::mergeSort(){
     cout << "2. Descending" << endl;
     cin >> input2;
 
-    mergeRun(input1, input2, root);
+    root = mergeRun(input1, input2, root);
     cout << "Sort complete." << endl;
 
 }
@@ -702,7 +702,7 @@ player* Merge(player* x, player* y, int input1, int input2){
 
             if(input2 == 1){
                 while(x != NULL && y != NULL){
-                    if(x->points >= y->points){
+                    if(x->points <= y->points){
                         curr->next = x;
                         x = x->next;
                     }else{
@@ -742,7 +742,7 @@ player* Merge(player* x, player* y, int input1, int input2){
 
             if(input2 == 1){
                 while(x != NULL && y != NULL){
-                    if(x->avgPoints >= y->avgPoints){
+                    if(x->avgPoints <= y->avgPoints){
                         curr->next = x;
                         x = x->next;
                     }else{
