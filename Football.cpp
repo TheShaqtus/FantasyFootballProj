@@ -26,17 +26,49 @@ Database::~Database()
 }
 
 void Database::buildDatabase(char* fileName){
-    entryCount = 4;
-    root->name = "A";
-    player* a = new player;
-    a->name = "P";
-    root->next = a;
-    player* b = new player;
-    b->name = "E";
-    a->next = b;
-    player* c = new player;
-    c->name = "D";
-    b->next = c;
+	 if(fileName.is_open){
+        string line;
+        entryCount=0;
+        player* temp = root;
+
+        while(getline(fileName, line)){
+            int indexOfSpace=line.find(",");
+            int length=line.length();
+            string name= line.substr(0, indexOfSpace);
+            string secondline= line.substr(indexOfSpace+1);
+            int indexOfSpace2=secondline.find(",");
+            string team= secondline.substr(0, indexOfSpace2);
+            string thirdline = secondline.substr(indexOfSpace2+1);
+            int indexOfSpace3 = thirdline.find(",");
+            string number= thirdline.substr(0, indexOfSpace3);
+            int games= atoi(number);
+            string fourthline= thirdline.substr(indexOfSpace3+1);
+            int indexOfSpace4= fourthline.find(",");
+            string position=fourthline.substr(0, indexOfSpace4);
+            string points=fourthline.substr(indexOfSpace4+1);
+            int playerpoints= atoi(points);
+            if(entryCount == 0){
+                root->name = name;
+                root->team = team;
+                root->games= games;
+                root->points= playerpoints;
+                root->position= position;
+                root->avgPoints= (playerpoints/games);
+            }
+            else{
+                player* n = new player;
+                n->name = name;
+                n->team = team;
+                n->games= games;
+                n->points= playerpoints;
+                n->position= position;
+                n->avgPoints= (playerpoints/games);
+                temp->next = n;
+            }
+            entryCount++;
+            temp = temp->next;
+        }
+	}
     cout << "Database built." << endl;
 
 
