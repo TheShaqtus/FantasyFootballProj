@@ -65,9 +65,9 @@ void Database::buildDatabase(char* fileName){
                 n->position= position;
                 n->avgPoints= (playerpoints/games);
                 temp->next = n;
+                temp = temp->next;
             }
             entryCount++;
-            temp = temp->next;
         }
 	//}
     cout << "Database built." << endl;
