@@ -397,7 +397,169 @@ player* Insert(player* head, player* newEntry, int input1, int input2){
             }
 
         case 2:
-            break;
+            if(input2 == 1){
+                if(head == NULL || head->team.compare(newEntry->team) >= 0){
+                    newEntry->next = head;
+                    head = newEntry;
+                    return head;
+                }
+                player* curr = head;
+                player* prev = NULL;
+                while(curr != NULL && curr->team.compare(newEntry->team) < 0){
+                    prev = curr;
+                    curr = curr->next;
+                }
+                newEntry->next = curr;
+                prev->next = newEntry;
+                return head;
+            }else if(input2 == 2){
+                if(head == NULL || head->team.compare(newEntry->team) <= 0){
+                    newEntry->next = head;
+                    head = newEntry;
+                    return head;
+                }
+                player* curr = head;
+                player* prev = NULL;
+                while(curr != NULL && curr->team.compare(newEntry->team) > 0){
+                    prev = curr;
+                    curr = curr->next;
+                }
+                newEntry->next = curr;
+                prev->next = newEntry;
+                return head;
+            }
+
+        case 3:
+            if(input2 == 1){
+                if(head == NULL || head->position.compare(newEntry->position) >= 0){
+                    newEntry->next = head;
+                    head = newEntry;
+                    return head;
+                }
+                player* curr = head;
+                player* prev = NULL;
+                while(curr != NULL && curr->position.compare(newEntry->position) < 0){
+                    prev = curr;
+                    curr = curr->next;
+                }
+                newEntry->next = curr;
+                prev->next = newEntry;
+                return head;
+            }else if(input2 == 2){
+                if(head == NULL || head->position.compare(newEntry->position) <= 0){
+                    newEntry->next = head;
+                    head = newEntry;
+                    return head;
+                }
+                player* curr = head;
+                player* prev = NULL;
+                while(curr != NULL && curr->position.compare(newEntry->position) > 0){
+                    prev = curr;
+                    curr = curr->next;
+                }
+                newEntry->next = curr;
+                prev->next = newEntry;
+                return head;
+            }
+
+        case 4:
+            if(input2 == 1){
+                if(head == NULL || head->games >= newEntry->games){
+                    newEntry->next = head;
+                    head = newEntry;
+                    return head;
+                }
+                player* curr = head;
+                player* prev = NULL;
+                while(curr != NULL && curr->games < newEntry->games){
+                    prev = curr;
+                    curr = curr->next;
+                }
+                newEntry->next = curr;
+                prev->next = newEntry;
+                return head;
+            }else if(input2 == 2){
+                if(head == NULL || head->games <= newEntry->games){
+                    newEntry->next = head;
+                    head = newEntry;
+                    return head;
+                }
+                player* curr = head;
+                player* prev = NULL;
+                while(curr != NULL && curr->games > newEntry->games){
+                    prev = curr;
+                    curr = curr->next;
+                }
+                newEntry->next = curr;
+                prev->next = newEntry;
+                return head;
+            }
+
+        case 5:
+            if(input2 == 1){
+                if(head == NULL || head->points >= newEntry->points){
+                    newEntry->next = head;
+                    head = newEntry;
+                    return head;
+                }
+                player* curr = head;
+                player* prev = NULL;
+                while(curr != NULL && curr->points < newEntry->points){
+                    prev = curr;
+                    curr = curr->next;
+                }
+                newEntry->next = curr;
+                prev->next = newEntry;
+                return head;
+            }else if(input2 == 2){
+                if(head == NULL || head->points <= newEntry->points){
+                    newEntry->next = head;
+                    head = newEntry;
+                    return head;
+                }
+                player* curr = head;
+                player* prev = NULL;
+                while(curr != NULL && curr->points > newEntry->points){
+                    prev = curr;
+                    curr = curr->next;
+                }
+                newEntry->next = curr;
+                prev->next = newEntry;
+                return head;
+            }
+
+        case 6:
+            if(input2 == 1){
+                if(head == NULL || head->avgPoints >= newEntry->avgPoints){
+                    newEntry->next = head;
+                    head = newEntry;
+                    return head;
+                }
+                player* curr = head;
+                player* prev = NULL;
+                while(curr != NULL && curr->avgPoints < newEntry->avgPoints){
+                    prev = curr;
+                    curr = curr->next;
+                }
+                newEntry->next = curr;
+                prev->next = newEntry;
+                return head;
+            }else if(input2 == 2){
+                if(head == NULL || head->avgPoints <= newEntry->avgPoints){
+                    newEntry->next = head;
+                    head = newEntry;
+                    return head;
+                }
+                player* curr = head;
+                player* prev = NULL;
+                while(curr != NULL && curr->avgPoints > newEntry->avgPoints){
+                    prev = curr;
+                    curr = curr->next;
+                }
+                newEntry->next = curr;
+                prev->next = newEntry;
+                return head;
+            }
     }
     return head;
 }
