@@ -7,6 +7,11 @@
 
 using namespace std;
 
+player* mergeRun(int input1, int input2, player* curr);
+player* Merge(player* x, player* y);
+player* listSplit(player* head);
+
+
 Database::Database()
 {
 	player* temp = new player("", "", 1, "", 0);
@@ -34,7 +39,7 @@ void Database::buildDatabase(char* fileName){
 
         while(getline(myFile, line)){
             int indexOfSpace=line.find(",");
-            int length=line.length();
+            //int length=line.length();
             string name= line.substr(0, indexOfSpace);
             string secondline= line.substr(indexOfSpace+1);
             int indexOfSpace2=secondline.find(",");
@@ -217,10 +222,86 @@ void Database::bubbleSort(){
 
 void Database::mergeSort(){
 
+    int input1;
+    int input2;
+    cout << "==Choose Sort Field==" << endl;
+    cout << "1. Player Name" << endl;
+    cout << "2. Team" << endl;
+    cout << "3. Position" << endl;
+    cout << "4. Games Played" << endl;
+    cout << "5. Points" << endl;
+    cout << "6. Average Points" << endl;
+    cin >> input1;
+    cin.clear();
+    cin.ignore(10000, '\n');
+    cout << "==Choose Sort Order==" << endl;
+    cout << "1. Ascending" << endl;
+    cout << "2. Descending" << endl;
+    cin >> input2;
+
+    mergeRun(input1, input2, root);
+    cout << "Sort complete." << endl;
+
 }
 
 void Database::insertionSort(){
 }
 
 void Database::entrySelect(int index1, int index2){
+}
+
+player* mergeRun(int input1, int input2, player* head){
+    if(head == NULL || head->next == NULL){
+        return head;
+    }
+    player* middle = listSplit(head);
+    player* secondHalf = middle->next;
+    middle->next = NULL;
+    return Merge(mergeRun(input1, input2, head), mergeRun(input1, input2, secondHalf));
+    switch(input1){
+
+        case 1:
+            //mergeRun(input1, input2, first);
+            //mergeRun(input1, input2, second);
+            //headRef = Merge(first, second);
+            break;
+
+
+    }
+}
+
+player* listSplit(player* head){
+
+    if(head == NULL){
+        return head;
+    }
+    player* slow = head;
+    player* fast = head;
+    while(fast->next != NULL && fast->next->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+
+player* Merge(player* x, player* y){
+
+    player* temp = new player;
+    player* curr = temp;
+    while(x != NULL && y != NULL){
+        if(x->name.compare(y->name) < 0){
+            curr->next = x;
+            x = x->next;
+        }else{
+            curr->next = y;
+            y = y->next;
+        }
+        curr = curr->next;
+    }
+    if(x == NULL){
+        curr->next = y;
+    }else{
+        curr->next = x;
+    }
+    return temp->next;
 }
