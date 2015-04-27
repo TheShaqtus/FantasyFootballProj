@@ -183,7 +183,7 @@ void Database::bubbleSort(){
                 for(int i = 0; i < entryCount; i++){
                     curr = trail = root;
                     while(curr->next != NULL){
-                        if(curr->name.compare(curr->next->name) < 0){
+                        if(curr->name.compare(curr->next->name) <= 0){
                             temp = curr->next;
                             curr->next = curr->next->next;
                             temp->next = curr;
@@ -203,18 +203,227 @@ void Database::bubbleSort(){
             break;
 
         case 2:
+            if(input2 == 1){
+                for(int i = 0; i < entryCount; i++){
+                    curr = trail = root;
+                    while(curr->next != NULL){
+                        if(curr->team.compare(curr->next->team) >= 0){
+                            temp = curr->next;
+                            curr->next = curr->next->next;
+                            temp->next = curr;
+
+                            if(curr == root){
+                                root = trail = temp;
+                            }else{
+                                trail->next = temp;
+                            }
+                            curr = temp;
+                        }
+                        trail = curr;
+                        curr = curr->next;
+                    }
+                }
+            }else if(input2 == 2){
+                for(int i = 0; i < entryCount; i++){
+                    curr = trail = root;
+                    while(curr->next != NULL){
+                        if(curr->team.compare(curr->next->team) < 0){
+                            temp = curr->next;
+                            curr->next = curr->next->next;
+                            temp->next = curr;
+
+                            if(curr == root){
+                                root = trail = temp;
+                            }else{
+                                trail->next = temp;
+                            }
+                            curr = temp;
+                        }
+                        trail = curr;
+                        curr = curr->next;
+                    }
+                }
+            }
             break;
 
         case 3:
+
+            if(input2 == 1){
+                for(int i = 0; i < entryCount; i++){
+                    curr = trail = root;
+                    while(curr->next != NULL){
+                        if(curr->position.compare(curr->next->position) >= 0){
+                            temp = curr->next;
+                            curr->next = curr->next->next;
+                            temp->next = curr;
+
+                            if(curr == root){
+                                root = trail = temp;
+                            }else{
+                                trail->next = temp;
+                            }
+                            curr = temp;
+                        }
+                        trail = curr;
+                        curr = curr->next;
+                    }
+                }
+            }else if(input2 == 2){
+                for(int i = 0; i < entryCount; i++){
+                    curr = trail = root;
+                    while(curr->next != NULL){
+                        if(curr->position.compare(curr->next->position) <= 0){
+                            temp = curr->next;
+                            curr->next = curr->next->next;
+                            temp->next = curr;
+
+                            if(curr == root){
+                                root = trail = temp;
+                            }else{
+                                trail->next = temp;
+                            }
+                            curr = temp;
+                        }
+                        trail = curr;
+                        curr = curr->next;
+                    }
+                }
+            }
             break;
 
         case 4:
+
+            if(input2 == 1){
+                for(int i = 0; i < entryCount; i++){
+                    curr = trail = root;
+                    while(curr->next != NULL){
+                        if(curr->games >= curr->next->games){
+                            temp = curr->next;
+                            curr->next = curr->next->next;
+                            temp->next = curr;
+
+                            if(curr == root){
+                                root = trail = temp;
+                            }else{
+                                trail->next = temp;
+                            }
+                            curr = temp;
+                        }
+                        trail = curr;
+                        curr = curr->next;
+                    }
+                }
+            }else if(input2 == 2){
+                for(int i = 0; i < entryCount; i++){
+                    curr = trail = root;
+                    while(curr->next != NULL){
+                        if(curr->games <= curr->next->games){
+                            temp = curr->next;
+                            curr->next = curr->next->next;
+                            temp->next = curr;
+
+                            if(curr == root){
+                                root = trail = temp;
+                            }else{
+                                trail->next = temp;
+                            }
+                            curr = temp;
+                        }
+                        trail = curr;
+                        curr = curr->next;
+                    }
+                }
+            }
             break;
 
         case 5:
+
+            if(input2 == 1){
+                for(int i = 0; i < entryCount; i++){
+                    curr = trail = root;
+                    while(curr->next != NULL){
+                        if(curr->points >= curr->next->points){
+                            temp = curr->next;
+                            curr->next = curr->next->next;
+                            temp->next = curr;
+
+                            if(curr == root){
+                                root = trail = temp;
+                            }else{
+                                trail->next = temp;
+                            }
+                            curr = temp;
+                        }
+                        trail = curr;
+                        curr = curr->next;
+                    }
+                }
+            }else if(input2 == 2){
+                for(int i = 0; i < entryCount; i++){
+                    curr = trail = root;
+                    while(curr->next != NULL){
+                        if(curr->points <= curr->next->points){
+                            temp = curr->next;
+                            curr->next = curr->next->next;
+                            temp->next = curr;
+
+                            if(curr == root){
+                                root = trail = temp;
+                            }else{
+                                trail->next = temp;
+                            }
+                            curr = temp;
+                        }
+                        trail = curr;
+                        curr = curr->next;
+                    }
+                }
+            }
             break;
 
         case 6:
+
+            if(input2 == 1){
+                for(int i = 0; i < entryCount; i++){
+                    curr = trail = root;
+                    while(curr->next != NULL){
+                        if(curr->avgPoints >= curr->next->avgPoints){
+                            temp = curr->next;
+                            curr->next = curr->next->next;
+                            temp->next = curr;
+
+                            if(curr == root){
+                                root = trail = temp;
+                            }else{
+                                trail->next = temp;
+                            }
+                            curr = temp;
+                        }
+                        trail = curr;
+                        curr = curr->next;
+                    }
+                }
+            }else if(input2 == 2){
+                for(int i = 0; i < entryCount; i++){
+                    curr = trail = root;
+                    while(curr->next != NULL){
+                        if(curr->avgPoints <= curr->next->avgPoints){
+                            temp = curr->next;
+                            curr->next = curr->next->next;
+                            temp->next = curr;
+
+                            if(curr == root){
+                                root = trail = temp;
+                            }else{
+                                trail->next = temp;
+                            }
+                            curr = temp;
+                        }
+                        trail = curr;
+                        curr = curr->next;
+                    }
+                }
+            }
             break;
 
 
@@ -327,20 +536,248 @@ player* Merge(player* x, player* y, int input1, int input2){
 
     player* temp = new player;
     player* curr = temp;
-    while(x != NULL && y != NULL){
-        if(x->name.compare(y->name) < 0){
-            curr->next = x;
-            x = x->next;
-        }else{
-            curr->next = y;
-            y = y->next;
-        }
-        curr = curr->next;
-    }
-    if(x == NULL){
-        curr->next = y;
-    }else{
-        curr->next = x;
+    switch(input1){
+
+        case 1:
+
+            if(input2 == 1){
+                while(x != NULL && y != NULL){
+                    if(x->name.compare(y->name) < 0){
+                        curr->next = x;
+                        x = x->next;
+                    }else{
+                        curr->next = y;
+                        y = y->next;
+                    }
+
+                    curr = curr->next;
+                }
+                if(x == NULL){
+                    curr->next = y;
+                }else{
+                    curr->next = x;
+                }
+                return temp->next;
+            }else if(input2 == 2){
+
+                while(x != NULL && y != NULL){
+                    if(y->name.compare(x->name) > 0){
+                        curr->next = y;
+                        y = y->next;
+                    }else{
+                        curr->next = x;
+                        x = x->next;
+                    }
+                    curr = curr->next;
+                }
+                if(x == NULL){
+                    curr->next = y;
+                }else{
+                    curr->next = x;
+                }
+                return temp->next;
+            }
+
+        case 2:
+
+            if(input2 == 1){
+                while(x != NULL && y != NULL){
+                    if(x->team.compare(y->team) < 0){
+                        curr->next = x;
+                        x = x->next;
+                    }else{
+                        curr->next = y;
+                        y = y->next;
+                    }
+
+                    curr = curr->next;
+                }
+                if(x == NULL){
+                    curr->next = y;
+                }else{
+                    curr->next = x;
+                }
+                return temp->next;
+            }else if(input2 == 2){
+
+                while(x != NULL && y != NULL){
+                    if(y->team.compare(x->team) > 0){
+                        curr->next = y;
+                        y = y->next;
+                    }else{
+                        curr->next = x;
+                        x = x->next;
+                    }
+                    curr = curr->next;
+                }
+                if(x == NULL){
+                    curr->next = y;
+                }else{
+                    curr->next = x;
+                }
+                return temp->next;
+            }
+
+        case 3:
+
+            if(input2 == 1){
+                while(x != NULL && y != NULL){
+                    if(x->position.compare(y->position) < 0){
+                        curr->next = x;
+                        x = x->next;
+                    }else{
+                        curr->next = y;
+                        y = y->next;
+                    }
+
+                    curr = curr->next;
+                }
+                if(x == NULL){
+                    curr->next = y;
+                }else{
+                    curr->next = x;
+                }
+                return temp->next;
+            }else if(input2 == 2){
+
+                while(x != NULL && y != NULL){
+                    if(y->position.compare(x->position) > 0){
+                        curr->next = y;
+                        y = y->next;
+                    }else{
+                        curr->next = x;
+                        x = x->next;
+                    }
+                    curr = curr->next;
+                }
+                if(x == NULL){
+                    curr->next = y;
+                }else{
+                    curr->next = x;
+                }
+                return temp->next;
+            }
+
+        case 4:
+
+            if(input2 == 1){
+                while(x != NULL && y != NULL){
+                    if(x->games <= y->games){
+                        curr->next = x;
+                        x = x->next;
+                    }else{
+                        curr->next = y;
+                        y = y->next;
+                    }
+
+                    curr = curr->next;
+                }
+                if(x == NULL){
+                    curr->next = y;
+                }else{
+                    curr->next = x;
+                }
+                return temp->next;
+            }else if(input2 == 2){
+
+                while(x != NULL && y != NULL){
+                    if(y->games >= x->games){
+                        curr->next = y;
+                        y = y->next;
+                    }else{
+                        curr->next = x;
+                        x = x->next;
+                    }
+                    curr = curr->next;
+                }
+                if(x == NULL){
+                    curr->next = y;
+                }else{
+                    curr->next = x;
+                }
+                return temp->next;
+            }
+
+        case 5:
+
+            if(input2 == 1){
+                while(x != NULL && y != NULL){
+                    if(x->points >= y->points){
+                        curr->next = x;
+                        x = x->next;
+                    }else{
+                        curr->next = y;
+                        y = y->next;
+                    }
+
+                    curr = curr->next;
+                }
+                if(x == NULL){
+                    curr->next = y;
+                }else{
+                    curr->next = x;
+                }
+                return temp->next;
+            }else if(input2 == 2){
+
+                while(x != NULL && y != NULL){
+                    if(y->points >= x->points){
+                        curr->next = y;
+                        y = y->next;
+                    }else{
+                        curr->next = x;
+                        x = x->next;
+                    }
+                    curr = curr->next;
+                }
+                if(x == NULL){
+                    curr->next = y;
+                }else{
+                    curr->next = x;
+                }
+                return temp->next;
+            }
+
+        case 6:
+
+            if(input2 == 1){
+                while(x != NULL && y != NULL){
+                    if(x->avgPoints >= y->avgPoints){
+                        curr->next = x;
+                        x = x->next;
+                    }else{
+                        curr->next = y;
+                        y = y->next;
+                    }
+
+                    curr = curr->next;
+                }
+                if(x == NULL){
+                    curr->next = y;
+                }else{
+                    curr->next = x;
+                }
+                return temp->next;
+            }else if(input2 == 2){
+
+                while(x != NULL && y != NULL){
+                    if(y->avgPoints >= x->avgPoints){
+                        curr->next = y;
+                        y = y->next;
+                    }else{
+                        curr->next = x;
+                        x = x->next;
+                    }
+                    curr = curr->next;
+                }
+                if(x == NULL){
+                    curr->next = y;
+                }else{
+                    curr->next = x;
+                }
+                return temp->next;
+            }
+
     }
     return temp->next;
 }
