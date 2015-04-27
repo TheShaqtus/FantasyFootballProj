@@ -133,6 +133,45 @@ void Database::comparePlayers(string name1, string name2){
 }
 
 void Database::compareTeams(string name1, string name2){
+
+    vector<player*> team1;
+    vector<player*> team2;
+    int points[2];
+    points[0] = 0;
+    points[1] = 0;
+    int entries[2];
+    entries[0] = 0;
+    entries[1] = 0;
+    player* curr = root;
+    while(curr != NULL){
+        if(curr->team.compare(name1) == 0){
+            team1.push_back(curr);
+            points[0] = points[0] + curr->points;
+            entries[0]++;
+        }else if(curr->team.compare(name2) == 0){
+            team2.push_back(curr);
+            points[1] = points[1] + curr->points;
+            entries[1]++;
+        }
+        curr = curr->next;
+    }
+    cout << "Player Stats of " << name1 << endl;
+    for(int i = 0; i < team1.size(); i++){
+        cout << team1[i]->name << "  " << team1[i]->position << "  " << team1[i]->games << "  " << team1[i]->points << "  " << fixed << setprecision(2) << team1[i]->avgPoints  << endl;
+    }
+    cout << "Total Team Points: " << points[0] << endl;
+    cout << "Average Points per Player: " << fixed << setprecision(2) << points[0]/(double)entries[0] << endl;
+
+    cout << " " << endl;
+
+    cout << "Player Stats of " << name2 << endl;
+    for(int i = 0; i < team2.size(); i++){
+        cout << team2[i]->name << "  " << team2[i]->position << "  " << team2[i]->games << "  " << team2[i]->points << "  " << fixed << setprecision(2) << team2[i]->avgPoints  << endl;
+    }
+    cout << "Total Team Points: " << points[1] << endl;
+    cout << "Average Points per Player: " << fixed << setprecision(2) << points[1]/(double)entries[1] << endl;
+    cout << " " << endl;
+
 }
 
 void Database::bubbleSort(){
