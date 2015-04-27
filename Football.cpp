@@ -11,7 +11,6 @@ Database::Database()
 {
 	player* temp = new player("", "", 1, "", 0);
 	root = temp;
-	temp->prev = NULL;
 	temp->next = NULL;
 }
 
@@ -27,6 +26,19 @@ Database::~Database()
 }
 
 void Database::buildDatabase(char* fileName){
+    entryCount = 4;
+    root->name = "A";
+    player* a = new player;
+    a->name = "P";
+    root->next = a;
+    player* b = new player;
+    b->name = "E";
+    a->next = b;
+    player* c = new player;
+    c->name = "D";
+    b->next = c;
+    cout << "Database built." << endl;
+
 
 
 }
@@ -83,6 +95,62 @@ void Database::compareTeams(string name1, string name2){
 }
 
 void Database::bubbleSort(){
+    int input;
+    player* curr = NULL;
+    player* trail = NULL;
+    player* temp = NULL;
+    cout << "==Choose Sort Field==" << endl;
+    cout << "1. Player Name" << endl;
+    cout << "2. Team" << endl;
+    cout << "3. Position" << endl;
+    cout << "4. Games Played" << endl;
+    cout << "5. Points" << endl;
+    cout << "6. Average Points" << endl;
+    cin >> input;
+
+    switch(input){
+
+        case 1:
+            for(int i = 0; i < entryCount; i++){
+                curr = trail = root;
+                while(curr->next != NULL){
+                    if(curr->name.compare(curr->next->name) > 0){
+                        temp = curr->next;
+                        curr->next = curr->next->next;
+                        temp->next = curr;
+
+                        if(curr == root){
+                            root = trail = temp;
+                        }else{
+                            trail->next = temp;
+                        }
+                        curr = temp;
+                    }
+                    trail = curr;
+                    curr = curr->next;
+                }
+            }
+            break;
+
+        case 2:
+            break;
+
+        case 3:
+            break;
+
+        case 4:
+            break;
+
+        case 5:
+            break;
+
+        case 6:
+            break;
+
+
+
+    }
+    cout << "Sort complete." << endl;
 }
 
 void Database::mergeSort(){
